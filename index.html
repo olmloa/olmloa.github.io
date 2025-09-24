@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Olmedo Loaiza — Portafolio</title>
+  <meta name="description" content="Portafolio personal de Olmedo Loaiza: Programador Web y Docente en Supérate Provivienda." />
+
+  <!-- Favicon simple (emoji) para una sola página -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>👨‍💻</text></svg>">
+
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #141823;
+      --text: #e6e8ef;
+      --muted: #aab0c0;
+      --brand: #6ee7ff; /* cian suave */
+      --brand-2: #9b87f5; /* violeta suave */
+      --accent: #22c55e; /* verde */
+      --border: #1f2430;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --maxw: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 10% -5%, rgba(110,231,255,.10), transparent 50%),
+                  radial-gradient(1000px 600px at 110% 10%, rgba(155,135,245,.10), transparent 50%),
+                  var(--bg);
+      line-height: 1.6;
+    }
+
+    /* --- Header --- */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: rgba(15,17,21,.6);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { max-width: var(--maxw); margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; gap: 10px; align-items: center; font-weight: 700; letter-spacing: .2px; }
+    .brand-badge {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      display: grid; place-items: center; color: #0b0e14; font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+    .brand span { font-size: 15px; color: var(--muted); font-weight: 600; }
+    nav ul { list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; }
+    nav a { color: var(--muted); text-decoration: none; padding: 8px 12px; border-radius: 10px; font-weight: 600; }
+    nav a:hover { color: var(--text); background: #1a1f2b; }
+
+    /* --- Hero --- */
+    .hero { max-width: var(--maxw); margin: 32px auto 0; padding: 48px 20px 0; display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: center; }
+    .kicker { color: var(--brand); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; }
+    .title { font-size: clamp(28px, 5vw, 48px); line-height: 1.15; margin: 10px 0 14px; font-weight: 800; }
+    .subtitle { color: var(--muted); font-size: 18px; }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .btn { border: 1px solid var(--border); background: #161b26; color: var(--text); padding: 12px 16px; border-radius: 12px; text-decoration: none; font-weight: 700; }
+    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #0b0e14; border: 0; }
+    .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+
+    .hero-card { background: linear-gradient(180deg, rgba(110,231,255,.08), rgba(155,135,245,.08)); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+    .code {
+      background: #0b0e14; border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 16px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: 13px; overflow: auto;
+    }
+    .code .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+    .win { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+    .tag { display: inline-flex; gap: 6px; align-items: center; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: #121722; color: var(--muted); font-size: 12px; margin-right: 8px; }
+
+    /* --- Sections --- */
+    section { padding: 56px 20px; }
+    .container { max-width: var(--maxw); margin: 0 auto; }
+    .section-title { font-size: 24px; margin: 0 0 14px; }
+    .section-sub { color: var(--muted); margin-bottom: 24px; }
+
+    /* Cards grid */
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card { grid-column: span 12; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+
+    /* About */
+    .about { display: grid; grid-template-columns: .9fr 1.1fr; gap: 22px; }
+    .about .avatar { aspect-ratio: 1/1; border-radius: var(--radius); border: 1px solid var(--border); background:
+        radial-gradient(300px 280px at 40% 30%, rgba(110,231,255,.2), transparent 35%),
+        radial-gradient(260px 240px at 75% 70%, rgba(155,135,245,.18), transparent 40%),
+        #0b0e14; display: grid; place-items: center; font-size: 46px; }
+    .about p { margin: 0; color: var(--muted); }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .pill { padding: 10px 12px; border: 1px solid var(--border); background: #111625; border-radius: 12px; font-weight: 700; color: var(--text); }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .project { grid-column: span 6; background: linear-gradient(180deg, rgba(155,135,245,.06), rgba(110,231,255,.06)); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: grid; }
+    .project .thumb { background: #0b0e14; aspect-ratio: 16/9; display: grid; place-items: center; color: var(--muted); font-weight: 700; letter-spacing: .1em; }
+    .project .body { padding: 16px; }
+    .project h3 { margin: 0 0 8px; font-size: 18px; }
+    .meta { display: flex; gap: 10px; flex-wrap: wrap; color: var(--muted); font-size: 13px; }
+
+    /* Experience */
+    .timeline { border-left: 2px dashed #2a3245; margin-left: 8px; padding-left: 18px; }
+    .timeline .item { margin: 0 0 18px; }
+    .timeline .item h4 { margin: 0; font-size: 16px; }
+    .timeline .item .small { color: var(--muted); font-size: 13px; }
+
+    /* Contact */
+    .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    form { display: grid; gap: 10px; }
+    input, textarea { background: #0b0e14; border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; color: var(--text); font: inherit; }
+    textarea { min-height: 140px; resize: vertical; }
+
+    footer { border-top: 1px solid var(--border); color: var(--muted); padding: 28px 20px; text-align: center; }
+
+    /* --- Responsive --- */
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; padding-top: 36px; }
+      .about { grid-template-columns: 1fr; }
+      .projects .project { grid-column: span 12; }
+      .contact { grid-template-columns: 1fr; }
+      .skills { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      nav ul { gap: 8px; }
+      .skills { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-badge">OL</div>
+        Olmedo Loaiza <span>· Programador Web & Docente</span>
+      </div>
+      <nav aria-label="principal">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#experiencia">Experiencia</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="inicio" class="hero">
+    <div>
+      <div class="kicker">Programador Web · Docente en Supérate Provivienda</div>
+      <h1 class="title">Hola, soy <span style="background: linear-gradient(135deg, var(--brand), var(--brand-2)); -webkit-background-clip: text; background-clip: text; color: transparent;">Olmedo Loaiza</span>.<br/>Construyo soluciones web limpias, seguras y rápidas.</h1>
+      <p class="subtitle">Me especializo en front‑end moderno, back‑end para APIs y despliegues en la nube. Como docente en Supérate Provivienda, disfruto llevar buenas prácticas de la industria al aula.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contacto">Hablemos</a>
+        <a class="btn" href="#proyectos">Ver proyectos</a>
+      </div>
+      <div style="margin-top: 18px;">
+        <span class="tag">Disponible para freelancing</span>
+        <span class="tag">Respuesta en &lt;24h</span>
+      </div>
+    </div>
+
+    <aside class="hero-card" aria-label="fragmento de código de muestra">
+      <div class="win">
+        <span class="dot" style="background:#ff5f57"></span>
+        <span class="dot" style="background:#febc2e"></span>
+        <span class="dot" style="background:#28c840"></span>
+      </div>
+      <pre class="code"><code>// utils/fecha.ts
+export const formatearFecha = (iso: string) =>
+  new Date(iso).toLocaleDateString('es-PA', { year: 'numeric', month: 'short', day: '2-digit' });
+
+// api/contacto.ts
+export async function enviarMensaje(payload) {
+  const res = await fetch('/api/contacto', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error('No se pudo enviar el mensaje');
+  return res.json();
+}
+
+// componente react
+function Boton({ children }) {
+  return (
+    &lt;button className="btn primary" onClick={() => alert('¡Hola!')}&gt;
+      {children}
+    &lt;/button&gt;
+  );
+}
+</code></pre>
+    </aside>
+  </main>
+
+  <!-- Sobre mí -->
+  <section aria-labelledby="about-title">
+    <div class="container about">
+      <div class="card avatar" aria-hidden="true">👨‍🏫</div>
+      <div class="card">
+        <h2 id="about-title" class="section-title">Sobre mí</h2>
+        <p>Soy desarrollador con enfoque en calidad, rendimiento y DX. Imparto módulos de programación web en <strong>Supérate Provivienda</strong>, donde guiamos a estudiantes en HTML, CSS, JavaScript y Git con proyectos reales.</p>
+        <p>Fuera del aula, colaboro con empresas para construir productos que generen impacto medible: tiempos de carga &lt;1s, accesibilidad AA y pipelines CI/CD confiables.</p>
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap: wrap;">
+          <span class="pill">HTML5 · CSS3 · JS/TS</span>
+          <span class="pill">React · Next.js</span>
+          <span class="pill">Node.js · APIs REST</span>
+          <span class="pill">SQL · Prisma</span>
+          <span class="pill">Git · GitHub Actions</span>
+          <span class="pill">Vite · Tailwind</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proyectos -->
+  <section id="proyectos" aria-labelledby="proj-title">
+    <div class="container">
+      <h2 id="proj-title" class="section-title">Proyectos destacados</h2>
+      <p class="section-sub">Selección de trabajos con foco en accesibilidad, performance y buenas prácticas.</p>
+      <div class="projects">
+        <article class="project">
+          <div class="thumb">Landing educativa · 16:9</div>
+          <div class="body">
+            <h3>Plataforma para cursos (demo)</h3>
+            <p class="meta">
+              <span>React</span><span>Next.js</span><span>Vercel</span><span>Core Web Vitals 95+</span>
+            </p>
+            <p style="color:var(--muted)">SPA con rutas protegidas, login social y SSR para SEO.</p>
+            <a class="btn" href="#" aria-disabled="true">Ver demo</a>
+          </div>
+        </article>
+        <article class="project">
+          <div class="thumb">Dashboard · 16:9</div>
+          <div class="body">
+            <h3>Dashboard de métricas (demo)</h3>
+            <p class="meta">
+              <span>Node.js</span><span>Prisma</span><span>PostgreSQL</span><span>CI/CD</span>
+            </p>
+            <p style="color:var(--muted)">Gráficas en tiempo real, roles y auditoría de eventos.</p>
+            <a class="btn" href="#" aria-disabled="true">Ver demo</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experiencia -->
+  <section id="experiencia" aria-labelledby="exp-title">
+    <div class="container">
+      <h2 id="exp-title" class="section-title">Experiencia & docencia</h2>
+      <div class="grid">
+        <div class="card" style="grid-column: span 7;">
+          <h3>Trayectoria</h3>
+          <div class="timeline">
+            <div class="item">
+              <h4>Docente — Supérate Provivienda</h4>
+              <div class="small">2024 — Presente · Panamá</div>
+              <p class="small">Diseño de contenidos, mentoría y evaluación por proyectos. Enfoque en fundamentos web, accesibilidad y control de versiones.</p>
+            </div>
+            <div class="item">
+              <h4>Programador Web — Freelance</h4>
+              <div class="small">2018 — Presente</div>
+              <p class="small">Sitios y aplicaciones para PyMEs. Stack moderno, automatizaciones y despliegues en la nube.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="grid-column: span 5;">
+          <h3>Logros</h3>
+          <ul style="margin:0 0 0 18px; color:var(--muted)">
+            <li>+30 estudiantes formados con proyectos reales.</li>
+            <li>Lighthouse Performance ≥ 95 en sitios productivos.</li>
+            <li>Implementación de CI/CD con pruebas automáticas.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" aria-labelledby="contact-title">
+    <div class="container contact">
+      <div class="card">
+        <h2 id="contact-title" class="section-title">Contacto</h2>
+        <p class="section-sub">¿Tienes una idea o proyecto? Envíame un mensaje:</p>
+        <form onsubmit="event.preventDefault(); alert('¡Gracias! Me pondré en contacto pronto.'); this.reset();">
+          <label>
+            <span>Nombre</span>
+            <input required type="text" name="name" placeholder="Tu nombre" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input required type="email" name="email" placeholder="tucorreo@ejemplo.com" />
+          </label>
+          <label>
+            <span>Mensaje</span>
+            <textarea required name="message" placeholder="Cuéntame sobre tu proyecto"></textarea>
+          </label>
+          <button class="btn primary" type="submit">Enviar mensaje</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3>Información</h3>
+        <p class="small" style="color:var(--muted)">Disponible para proyectos remotos o presenciales en Panamá. Respuesta usual en menos de 24h.</p>
+        <div style="display:grid; gap:10px; margin-top:10px;">
+          <div class="tag">✉️ olmedo.loaiza@example.com</div>
+          <div class="tag">🌐 www.portafolio-olmedo.dev</div>
+          <div class="tag">📍 Panamá, PA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="y"></span> Olmedo Loaiza · Hecho con HTML + CSS.
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
